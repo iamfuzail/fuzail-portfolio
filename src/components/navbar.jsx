@@ -1,132 +1,3 @@
-// import { motion, AnimatePresence } from "framer-motion";
-// import { useState } from "react";
-
-// export default function Navbar({ toggleTheme, dark }) {
-//   const [open, setOpen] = useState(false);
-
-//   const links = ["about", "services", "portfolio", "contact"];
-
-//   return (
-//     <>
-//       {/* Top navbar */}
-//       <motion.nav
-//         initial={{ y: -60, opacity: 0 }}
-//         animate={{ y: 0, opacity: 1 }}
-//         transition={{ duration: 0.6 }}
-//         className="fixed top-0 left-0 w-full bg-white/70 dark:bg-black/70 backdrop-blur-md 
-//                    text-black dark:text-white px-5 md:px-20 py-4 flex justify-between items-center z-50"
-//       >
-//         <h1 className="text-xl font-bold text-orange-500">Simmi</h1>
-
-//         {/* Desktop menu */}
-//         <div className="hidden md:flex gap-8 text-sm items-center">
-//           {links.map((item) => (
-//             <a
-//               key={item}
-//               href={`#${item}`}
-//               className="hover:text-orange-500 transition"
-//             >
-//               {item.charAt(0).toUpperCase() + item.slice(1)}
-//             </a>
-//           ))}
-
-//           {/* Theme toggle */}
-//           <div
-//             onClick={toggleTheme}
-//             className="w-12 h-6 flex items-center bg-gray-300 dark:bg-gray-700 rounded-full p-1 cursor-pointer transition"
-//           >
-//             <div
-//               className={`bg-white w-4 h-4 rounded-full transform transition
-//     ${dark 
-//       ? "translate-x-6 ring-4 ring-orange-500/40" 
-//       : "translate-x-0"}
-//   `}
-
-//             />
-//           </div>
-//         </div>
-
-//         {/* Mobile controls */}
-//         <div className="flex items-center gap-3 md:hidden">
-//           <div
-//             onClick={toggleTheme}
-//             className="w-12 h-6 flex items-center bg-gray-300 dark:bg-gray-700 rounded-full p-1 cursor-pointer transition"
-//           >
-//             <div
-//               className={`bg-white w-4 h-4 rounded-full transform transition
-//     ${dark 
-//       ? "translate-x-6 ring-4 ring-orange-500/40" 
-//       : "translate-x-0"}
-//   `}
-
-//             />
-//           </div>
-
-
-//           <button
-//             onClick={() => setOpen(true)}
-//             className="text-2xl"
-//           >
-//             ☰
-//           </button>
-//         </div>
-//       </motion.nav>
-
-//       {/* Mobile menu overlay + drawer */}
-//       <AnimatePresence>
-//         {open && (
-//           <>
-//             {/* Blur background */}
-//             <motion.div
-//               initial={{ opacity: 0 }}
-//               animate={{ opacity: 1 }}
-//               exit={{ opacity: 0 }}
-//               onClick={() => setOpen(false)}
-//               className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-//             />
-
-//             {/* Slide drawer */}
-//             <motion.div
-//               drag="x"
-//               dragConstraints={{ left: 0, right: 0 }}
-//               dragElastic={0.15}
-//               onDragEnd={(e, info) => {
-//                 if (info.offset.x > 100) setOpen(false);
-//               }}
-//               initial={{ x: "100%" }}
-//               animate={{ x: 0 }}
-//               exit={{ x: "100%" }}
-//               transition={{ duration: 0.35, ease: "easeOut" }}
-//               className="fixed top-0 right-0 h-full w-3/4 bg-white dark:bg-black 
-//                          text-black dark:text-white z-50 flex flex-col 
-//                          items-center justify-center gap-8 text-2xl"
-//             >
-//               {links.map((item) => (
-//                 <a
-//                   key={item}
-//                   href={`#${item}`}
-//                   onClick={() => setOpen(false)}
-//                   className="hover:text-orange-500 transition"
-//                 >
-//                   {item.charAt(0).toUpperCase() + item.slice(1)}
-//                 </a>
-//               ))}
-
-//               <button
-//                 onClick={() => setOpen(false)}
-//                 className="absolute top-6 right-6 text-3xl"
-//               >
-//                 ✕
-//               </button>
-//             </motion.div>
-//           </>
-//         )}
-//       </AnimatePresence>
-//     </>
-//   );
-// }
-
-
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
 
@@ -151,10 +22,10 @@ export default function Navbar({ dark, toggleTheme }) {
 
   /* ---------- audio setup ---------- */
   useEffect(() => {
-    audioRef.current = new Audio("/intro.mp3");
+    audioRef.current = new Audio(`${import.meta.env.BASE_URL}intro.mp3`);
     audioRef.current.volume = 0.4;
 
-    clickRef.current = new Audio("/click.mp3");
+    clickRef.current = new Audio(`${import.meta.env.BASE_URL}click.mp3`);
     clickRef.current.volume = 0.35;
   }, []);
 
