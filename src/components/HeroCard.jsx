@@ -10,7 +10,7 @@ export default function HeroCard() {
   const audioRef = useRef(null);
 
   if (!audioRef.current) {
-    audioRef.current = new Audio("/hero-song.mp3");
+    audioRef.current = new Audio(`${import.meta.env.BASE_URL}hero-song.mp3`);
     audioRef.current.loop = true;
     audioRef.current.volume = 0.5;
   }
@@ -34,7 +34,7 @@ export default function HeroCard() {
         {/* FRONT */}
         <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden">
           <img
-            src="/hero.png"
+            src={`${import.meta.env.BASE_URL}hero.png`}
             className="w-full h-full object-cover rounded-2xl"
             width="400"
             height="300"
